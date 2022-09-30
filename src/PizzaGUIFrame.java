@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.lang.reflect.Array;
 
 import static java.awt.Color.black;
 
@@ -12,13 +13,15 @@ public class PizzaGUIFrame extends JFrame{
     JPanel mainPnl, cAndsPnl, titlePnl, crustPnl, sizePnl, toppingsPnl, btnPnl, receiptPnl , pizzaDetailPnl;
     JLabel titleLbl;
     JButton quitBtn, clearBtn, orderBtn;
+
     static String thinCrust = "Thin";
     static String regCrust = "Regular";
-    static String ddCrust = "Deep-dish";
-    String[] size = { "Small ($8)", "Medium ($12)", "Large ($16)", "Super ($20)"};
+    static String ddCrust = "Deep-Dish";
+    String[] size = { "Small ", "Medium ", "Large ", "Super "};
 
     JScrollPane scroller;
     JTextArea receiptTA;
+
 
 
 
@@ -76,24 +79,27 @@ public class PizzaGUIFrame extends JFrame{
     }
 
 
-
+    ButtonGroup crust = new ButtonGroup();
+    JRadioButton thinBtn = new JRadioButton(thinCrust);
+    JRadioButton regBtn = new JRadioButton(regCrust);
+    JRadioButton ddBtn = new JRadioButton(ddCrust);
     private void createCrustPanel(){
         crustPnl = new JPanel();
-        JRadioButton thinBtn = new JRadioButton(thinCrust);
+
         thinBtn.setMnemonic(KeyEvent.VK_T);
         thinBtn.setActionCommand(thinCrust);
 
 
-        JRadioButton regBtn = new JRadioButton(regCrust);
+
         regBtn.setMnemonic(KeyEvent.VK_R);
         regBtn.setActionCommand(regCrust);
 
-        JRadioButton ddBtn = new JRadioButton(ddCrust);
+
         ddBtn.setMnemonic(KeyEvent.VK_D);
         ddBtn.setActionCommand(ddCrust);
 
         //Group the radio buttons.
-        ButtonGroup crust = new ButtonGroup();
+
         crust.add(thinBtn);
         crust.add(regBtn);
         crust.add(ddBtn);
@@ -107,13 +113,14 @@ public class PizzaGUIFrame extends JFrame{
 
         cAndsPnl.add(crustPnl, new GridLayout(1,1));
     }
+
+    JComboBox sizeList = new JComboBox(size);
     private void createSizePanel(){
         sizePnl = new JPanel();
-        JComboBox sizeList = new JComboBox(size);
-        sizeList.setSelectedIndex(0);
+
 
         sizePnl.add(sizeList);
-        sizePnl.setBorder(new TitledBorder("SIZE"));
+        sizePnl.setBorder(new TitledBorder("SIZE: Small ($8), Medium ($12), Large ($16), Super ($20)"));
         cAndsPnl.add(sizePnl, new GridLayout(1,2));
     }
 
@@ -157,18 +164,19 @@ public class PizzaGUIFrame extends JFrame{
         toppingsPnl.add(spineBox);
         toppingsPnl.add(goopBox);
 
-        toppingsPnl.setBorder(new TitledBorder("TOPPINGS"));
+        toppingsPnl.setBorder(new TitledBorder("TOPPINGS (+$1.00 each)"));
         pizzaDetailPnl.add(toppingsPnl, new GridLayout(3,1));
     }
 
     private void createReceiptPanel(){
         receiptPnl = new JPanel();
 
-        receiptTA =  new JTextArea(12, 30);
+        receiptTA =  new JTextArea(20, 60);
         scroller = new JScrollPane(receiptTA);
-        receiptTA.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        receiptTA.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 
         receiptPnl.add(scroller);
+        receiptTA.setEditable(false);
 
         receiptPnl.setBorder(new TitledBorder("RECEIPT"));
         mainPnl.add(receiptPnl, BorderLayout.CENTER);
@@ -198,17 +206,144 @@ public class PizzaGUIFrame extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 int result = JOptionPane.showConfirmDialog(pane,"Do you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);
                 if(result == JOptionPane.YES_OPTION){System.exit(0);}
-                else {setDefaultCloseOperation(pane.DEFAULT_OPTION);
+                else {setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
                 }}});
 
 
 
 
 
-        //clear
+        //clear - DONE
+        clearBtn.addActionListener(new ActionListener()
+        {
+
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                    crust.clearSelection();
+                    eyeBox.setSelected(false);
+                    fliesBox.setSelected(false);
+                    teethBox.setSelected(false);
+                    ratsBox.setSelected(false);
+                    spineBox.setSelected(false);
+                    goopBox.setSelected(false);
+                    sizeList.setSelectedIndex(0);
+                    receiptTA.setText(" ");
+
+
+            }
+        });
+
+
 
 
         //order
+        orderBtn.addActionListener(new ActionListener()
+        {
+
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                double toppingPrice = 0;
+                double subTotal = 0;
+                //check
+                String selectedToppings = "";
+                if(eyeBox.isSelected()){
+                    subTotal+= 1.0;
+                    toppingPrice+= 1.0;
+                    selectedToppings += "Eyes ";
+                }
+                if(fliesBox.isSelected()){
+                    subTotal+= 1.0;
+                    toppingPrice+= 1.0;
+                    selectedToppings += "Flies ";
+                }
+                if(teethBox.isSelected()){
+                    subTotal+= 1.0;
+                    toppingPrice+= 1.0;
+                    selectedToppings += "Teeth ";
+                }
+                if(ratsBox.isSelected()){
+                    subTotal+= 1.0;
+                    toppingPrice+= 1.0;
+                    selectedToppings += "Rats ";
+                }
+                if(spineBox.isSelected()){
+                    subTotal+= 1.0;
+                    toppingPrice+= 1.0;
+                    selectedToppings += "Spine ";
+                }
+                if(goopBox.isSelected()){
+                    subTotal+= 1.0;
+                    toppingPrice+= 1.0;
+                    selectedToppings += "Goop ";
+                }
+
+                //radio
+                String selectedCrust = "";
+
+                if(thinBtn.isSelected()){
+                    selectedCrust += "Thin Crust ";
+                }
+                if(regBtn.isSelected()){
+                    selectedCrust += "Regular Crust ";
+                }
+                if(ddBtn.isSelected()){
+                    selectedCrust += "Deep-Dish Crust ";
+                }
+
+                //combo
+                double sizePrice = 0;
+                // S"Small ($8)", "Medium ($12)", "Large ($16)", "Super ($20)"};
+                String selectedSize = ""
+                   + sizeList.getItemAt(sizeList.getSelectedIndex());
+                switch (selectedSize) {
+                    case "Small ":
+                        sizePrice= 8.0;
+                        subTotal += 8.0;
+                        break;
+                    case "Medium ":
+                        sizePrice= 12.0;
+                        subTotal += 12.0;
+                        break;
+                    case "Large ":
+                        sizePrice= 16.0;
+                        subTotal += 16.0;
+                        break;
+                    case "Super ":
+                        sizePrice= 20.0;
+                        subTotal += 20.0;
+                        break;
+                }
+
+                double tax= 0;
+                double totalPrice= 0;
+                tax = subTotal * 0.07;
+                totalPrice = tax + subTotal;
+
+                receiptTA.append("=========================================" + "\n");
+                receiptTA.append(String.format("%-60s",selectedSize + selectedCrust +":"));
+                receiptTA.append(String.format("%60s", sizePrice) +"\n");
+
+                receiptTA.append(String.format("%-60s", selectedToppings + ": " ));
+                receiptTA.append(String.format("%60s", toppingPrice + "\n\n"));
+
+
+                receiptTA.append((String.format("%-60s","Sub-total : ")));
+                receiptTA.append(String.format("%60s", subTotal +"\n"));
+
+
+                receiptTA.append(String.format("%-60s", "Tax : "));
+                receiptTA.append(String.format("%60s", Math.round(tax* 100.0) / 100.0 +"\n"));
+                receiptTA.append("---------------------------------------------------------------------" + "\n");
+                receiptTA.append(String.format("%-60s", "Total : "));
+                receiptTA.append(String.format("%60s", Math.round(totalPrice * 100.0) / 100.0 +"\n"));
+                receiptTA.append("=========================================");
+
+
+            }
+        });
+
 
     }
 
