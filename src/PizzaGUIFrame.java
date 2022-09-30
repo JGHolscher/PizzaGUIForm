@@ -321,6 +321,9 @@ public class PizzaGUIFrame extends JFrame{
                 tax = subTotal * 0.07;
                 totalPrice = tax + subTotal;
 
+
+                //FIX THE FUCKING FORMATING.............................................................................................
+
                 receiptTA.append("=========================================" + "\n");
                 receiptTA.append(String.format("%-60s",selectedSize + selectedCrust +":"));
                 receiptTA.append(String.format("%60s", sizePrice) +"\n");
