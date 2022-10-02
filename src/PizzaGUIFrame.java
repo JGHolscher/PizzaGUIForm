@@ -324,25 +324,27 @@ public class PizzaGUIFrame extends JFrame{
 
                 //FIX THE FUCKING FORMATING.............................................................................................
 
-                receiptTA.append("=========================================" + "\n");
-                receiptTA.append(String.format("%-60s",selectedSize + selectedCrust +":"));
-                receiptTA.append(String.format("%60s", sizePrice) +"\n");
-
-                receiptTA.append(String.format("%-60s", selectedToppings + ": " ));
-                receiptTA.append(String.format("%60s", toppingPrice + "\n\n"));
 
 
-                receiptTA.append((String.format("%-60s","Sub-total : ")));
-                receiptTA.append(String.format("%60s", subTotal +"\n"));
+
+                receiptTA.append("\n=========================================");
+                receiptTA.append(String.format("\n%-1s %3s", selectedSize+ selectedCrust + ": ", sizePrice));
+
+                receiptTA.append(String.format("\n%-1s %3s", selectedToppings + ": ", toppingPrice));
+
+                receiptTA.append(String.format("\n\n%-1s %3s", "Sub-total : ", subTotal));
+
+                receiptTA.append(String.format("\n%-1s %3s", "Tax : ", Math.round(tax* 100.0) / 100.0));
+
+                receiptTA.append("\n---------------------------------------------------------------------");
+
+                receiptTA.append(String.format("\n%-1s %3s", "Total : ", Math.round(totalPrice* 100.0) / 100.0));
 
 
-                receiptTA.append(String.format("%-60s", "Tax : "));
-                receiptTA.append(String.format("%60s", Math.round(tax* 100.0) / 100.0 +"\n"));
-                receiptTA.append("---------------------------------------------------------------------" + "\n");
-                receiptTA.append(String.format("%-60s", "Total : "));
-                receiptTA.append(String.format("%60s", Math.round(totalPrice * 100.0) / 100.0 +"\n"));
-                receiptTA.append("=========================================");
 
+                receiptTA.append("\n=========================================");
+
+                //receiptTA.append(String.format("\n%-30s %-30s %-30s %-30s %-30s", selectedSize+ selectedCrust, sizePrice, toppingPrice, subTotal));
 
             }
         });
