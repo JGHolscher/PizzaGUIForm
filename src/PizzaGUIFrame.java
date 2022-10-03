@@ -1,13 +1,9 @@
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.lang.reflect.Array;
-
-import static java.awt.Color.black;
 
 public class PizzaGUIFrame extends JFrame{
     JPanel mainPnl, cAndsPnl, titlePnl, crustPnl, sizePnl, toppingsPnl, btnPnl, receiptPnl , pizzaDetailPnl;
@@ -171,9 +167,9 @@ public class PizzaGUIFrame extends JFrame{
     private void createReceiptPanel(){
         receiptPnl = new JPanel();
 
-        receiptTA =  new JTextArea(20, 35);
+        receiptTA =  new JTextArea(20, 43);
         scroller = new JScrollPane(receiptTA);
-        receiptTA.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+        receiptTA.setFont(new Font("Monospaced", Font.PLAIN, 16));
 
         receiptPnl.add(scroller);
         receiptTA.setEditable(false);
@@ -209,14 +205,9 @@ public class PizzaGUIFrame extends JFrame{
                 else {setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
                 }}});
 
-
-
-
-
         //clear - DONE
         clearBtn.addActionListener(new ActionListener()
         {
-
             @Override
             public void actionPerformed(ActionEvent e)
             {
@@ -229,13 +220,8 @@ public class PizzaGUIFrame extends JFrame{
                     goopBox.setSelected(false);
                     sizeList.setSelectedIndex(0);
                     receiptTA.setText(" ");
-
-
             }
         });
-
-
-
 
         //order
         orderBtn.addActionListener(new ActionListener()
@@ -323,28 +309,15 @@ public class PizzaGUIFrame extends JFrame{
 
                 String pizza = selectedSize + selectedCrust;
 
-                //XXXXXXXXXXXXXXX.............................................................................................
+                receiptTA.append("\n =========================================");
+                receiptTA.append(String.format("\n%-35s%3.2f", " "+pizza, sizePrice));
+                receiptTA.append(String.format("\n%-35s%3.2f", " "+selectedToppings, toppingPrice));
 
-                receiptTA.append("\n=========================================");
-                //"%-5s:%10s\n"
-                receiptTA.append(String.format("\n%-70s:%-10s", pizza, sizePrice));
-
-                receiptTA.append(String.format("\n%-80s:%-3s", selectedToppings, toppingPrice));
-
-                receiptTA.append(String.format("\n\n%-78s:%3s", "Sub-total ", subTotal));
-
-                receiptTA.append(String.format("\n%-80s:%3s", "Tax ", Math.round(tax* 100.0) / 100.0));
-
-                receiptTA.append("\n--------------------------------------------------------------------------");
-
-                receiptTA.append(String.format("\n%-80s:%3s", "Total ", Math.round(totalPrice* 100.0) / 100.0));
-
-
-
-                receiptTA.append("\n=========================================");
-
-                //receiptTA.append(String.format("\n%-30s %-30s %-30s %-30s %-30s", selectedSize+ selectedCrust, sizePrice, toppingPrice, subTotal));
-
+                receiptTA.append(String.format("\n\n%-35s%3.2f", " Sub-total ", subTotal));
+                receiptTA.append(String.format("\n%-35s%3.2f", " Tax ", tax));
+                receiptTA.append("\n -----------------------------------------");
+                receiptTA.append(String.format("\n%-35s%3.2f", " Total ", totalPrice));
+                receiptTA.append("\n =========================================");
             }
         });
 
