@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a4b9ec32-d2f6-4c87-bf55-530a25becba3" name="Changes" comment="all works except for the fromating">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PizzaGUIFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PizzaGUIFrame.java" afterDir="false" />
-    </list>
+    <list default="true" id="a4b9ec32-d2f6-4c87-bf55-530a25becba3" name="Changes" comment="it was the font - all it good" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -113,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664756495344</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="it was the font - all it good">
+      <created>1664819262724</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1664819262724</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -131,37 +135,7 @@
     <MESSAGE value="initial" />
     <MESSAGE value="all info is there - need to make if funtional" />
     <MESSAGE value="all works except for the fromating" />
-    <option name="LAST_COMMIT_MESSAGE" value="all works except for the fromating" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/PizzaGUIFrame.java</url>
-          <line>332</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/PizzaGUIFrame.java</url>
-          <line>328</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/PizzaGUIFrame.java</url>
-          <line>329</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/PizzaGUIFrame.java</url>
-          <line>331</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/PizzaGUIFrame.java</url>
-          <line>334</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="it was the font - all it good" />
+    <option name="LAST_COMMIT_MESSAGE" value="it was the font - all it good" />
   </component>
 </project>

@@ -320,8 +320,5 @@ public class PizzaGUIFrame extends JFrame{
                 receiptTA.append("\n =========================================");
             }
         });
-
-
     }
-
 }
