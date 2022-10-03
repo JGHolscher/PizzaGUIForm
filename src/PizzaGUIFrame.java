@@ -171,7 +171,7 @@ public class PizzaGUIFrame extends JFrame{
     private void createReceiptPanel(){
         receiptPnl = new JPanel();
 
-        receiptTA =  new JTextArea(20, 60);
+        receiptTA =  new JTextArea(20, 35);
         scroller = new JScrollPane(receiptTA);
         receiptTA.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 
@@ -321,24 +321,23 @@ public class PizzaGUIFrame extends JFrame{
                 tax = subTotal * 0.07;
                 totalPrice = tax + subTotal;
 
+                String pizza = selectedSize + selectedCrust;
 
-                //FIX THE FUCKING FORMATING.............................................................................................
-
-
-
+                //XXXXXXXXXXXXXXX.............................................................................................
 
                 receiptTA.append("\n=========================================");
-                receiptTA.append(String.format("\n%-1s %3s", selectedSize+ selectedCrust + ": ", sizePrice));
+                //"%-5s:%10s\n"
+                receiptTA.append(String.format("\n%-70s:%-10s", pizza, sizePrice));
 
-                receiptTA.append(String.format("\n%-1s %3s", selectedToppings + ": ", toppingPrice));
+                receiptTA.append(String.format("\n%-80s:%-3s", selectedToppings, toppingPrice));
 
-                receiptTA.append(String.format("\n\n%-1s %3s", "Sub-total : ", subTotal));
+                receiptTA.append(String.format("\n\n%-78s:%3s", "Sub-total ", subTotal));
 
-                receiptTA.append(String.format("\n%-1s %3s", "Tax : ", Math.round(tax* 100.0) / 100.0));
+                receiptTA.append(String.format("\n%-80s:%3s", "Tax ", Math.round(tax* 100.0) / 100.0));
 
-                receiptTA.append("\n---------------------------------------------------------------------");
+                receiptTA.append("\n--------------------------------------------------------------------------");
 
-                receiptTA.append(String.format("\n%-1s %3s", "Total : ", Math.round(totalPrice* 100.0) / 100.0));
+                receiptTA.append(String.format("\n%-80s:%3s", "Total ", Math.round(totalPrice* 100.0) / 100.0));
 
 
 
